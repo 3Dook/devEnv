@@ -36,6 +36,10 @@ return packer.startup(function(use)
   -- preferred colorscheme
   -- use("bluz71/vim-nightfly-guicolors")
   use("sainnhe/everforest")
+
+  -- Transparency
+  use("xiyaowong/transparent.nvim")
+
   use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
 
   use("szw/vim-maximizer") -- maximizes and restores current window
@@ -107,6 +111,26 @@ return packer.startup(function(use)
 
   -- git integration
   use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
+
+  -- markdown note taking
+  use({
+    "renerocksai/telekasten.nvim",
+    requires = { "nvim-telescope/telescope.nvim" },
+  })
+  -- calender to use with telekasten
+  use("renerocksai/calendar-vim")
+  -- use markdown with telekasten to open a new browser
+  -- install without yarn or npm -- note: you might have to run manually ':call mkdp#util#install()'
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    setup = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  })
+  -- follow markdown links in neovim
+  use("jghauser/follow-md-links.nvim")
 
   if packer_bootstrap then
     require("packer").sync()

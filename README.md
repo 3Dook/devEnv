@@ -1,0 +1,1 @@
+-- note use live grep to add in telescope functionality to use .gitignore fzy
